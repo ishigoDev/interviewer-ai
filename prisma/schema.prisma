@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  previewFeatures = ["postgresqlExtensions"] 
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  extensions = [vector]
+}
+
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+
+  // Relations
+  interviews    Interview[]
+  resumeContext ResumeEmbedding[] 
+}
+
+// --- 2. VECTOR STORAGE (The Resume) ---
+model ResumeEmbedding {
+  id      String @id @default(uuid())
+  content String
+
+  embedding Unsupported("vector(1536)")?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("resume_embeddings") // Good practice to use snake_case for table names in DB
+}
+
+// --- 3. CHAT HISTORY (Optional but recommended) ---
+model Interview {
+  id        String    @id @default(uuid())
+  role      String    // e.g., "Full Stack Developer"
+  createdAt DateTime  @default(now())
+  
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
+  
+  messages  Message[]
+}
+
+model Message {
+  id          String    @id @default(uuid())
+  content     String
+  sender      String    // 'user' or 'ai'
+  createdAt   DateTime  @default(now())
+  
+  interviewId String
+  interview   Interview @relation(fields: [interviewId], references: [id])
+}
