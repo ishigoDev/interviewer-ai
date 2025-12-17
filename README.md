@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Interviewer AI
+
+Interviewer AI is a web application designed to assist with the interview process by leveraging AI to analyze resumes. Users can create an account, upload a resume in PDF format, and the application will process and store the resume's content for further analysis.
+
+## Features
+
+- **User Management:** Create and manage user accounts.
+- **Resume Upload:** Upload resumes in PDF format.
+- **Text Extraction:** Automatically extracts text content from the uploaded PDFs.
+- **AI-Powered Embedding:** Generates vector embeddings from the resume text for semantic analysis (powered by OpenAI).
+- **Vector Storage:** Stores resume embeddings in a PostgreSQL database with vector support.
+
+## Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Database:** [PostgreSQL](https://www.postgresql.org/) (recommended with [NeonDB](https://neon.tech/) for serverless environments)
+- **ORM:** [Prisma](https://www.prisma.io/)
+- **AI/Embeddings:** [OpenAI](https://openai.com/), [LangChain](https://www.langchain.com/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 
 ## Getting Started
 
-First, run the development server:
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [Node.js](https://nodejs.org/) (v20 or later recommended)
+- [npm](https://www.npmjs.com/)
+- A PostgreSQL database instance. The schema requires the `vector` extension. You can enable it by running `CREATE EXTENSION IF NOT EXISTS vector;` in your database.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1.  **Clone the repository:**
+    ```bash
+    git clone <your-repository-url>
+    cd interviewer-ai
+    ```
 
-## Learn More
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+3.  **Set up environment variables:**
+    Create a file named `.env` in the root of the project and add the following variables.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+    ```env
+    # Example for a PostgreSQL connection string
+    DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?sslmode=require"
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    # Your OpenAI API Key for generating embeddings
+    OPENAI_API_KEY="sk-..."
+    ```
 
-## Deploy on Vercel
+4.  **Apply database migrations:**
+    Run the following command to sync your database schema with the Prisma schema.
+    ```bash
+    npx prisma db push
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
+
+## API Endpoints
+
+The application exposes the following REST API endpoints:
+
+-   `POST /api/user`: Creates a new user.
+    -   **Body:** `{ "email": "user@example.com", "name": "John Doe" }`
+-   `POST /api/upload`: Uploads a PDF resume.
+    -   **Body:** `FormData` with a `file` (the PDF) and `userId`.
+-   `GET /api/health`: A simple health check endpoint.
