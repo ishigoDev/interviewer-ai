@@ -18,6 +18,8 @@ Interviewer AI is a web application designed to assist with the interview proces
 - **ORM:** [Prisma](https://www.prisma.io/)
 - **AI/Embeddings:** [OpenAI](https://openai.com/), [LangChain](https://www.langchain.com/)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Icons:** [Lucide Icons]
+- **UI Components:** [Shadcn/ui]
 
 ## Getting Started
 
