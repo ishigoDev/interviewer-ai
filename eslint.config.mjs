@@ -14,6 +14,18 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     "src/generated/prisma/**",
   ]),
+  {
+    rules: {
+      "no-var": "error",
+      "prefer-const": "error",
+      "no-console": "warn",
+      "eqeqeq": "error",
+      "curly": "error",
+      "no-unused-vars": "error",
+      "no-debugger": "error",
+      "semi": "error",
+    },
+  },
 ]);
 
 export default eslintConfig;

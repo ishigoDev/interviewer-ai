@@ -30,7 +30,6 @@ export async function embedAndStoreResume(userId: string, resumeText: string) {
     });
     
     const docs = await splitter.createDocuments([resumeText]);
-    console.log(`Split resume into ${docs.length} chunks.`);
 
     // Step C: Convert chunks to vectors
     // We map over the text chunks and ask OpenAI for the vector for each.
@@ -55,7 +54,6 @@ export async function embedAndStoreResume(userId: string, resumeText: string) {
     return { success: true, chunks: docs.length };
 
   } catch (error) {
-    console.error("Error embedding resume:", error);
     throw error;
   }
 }
