@@ -26,6 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <link rel="icon" href="/interviewAIicon.png" />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
