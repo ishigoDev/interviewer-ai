@@ -11,7 +11,7 @@ const Header = () => {
         </Link>
         <div className="flex items-center gap-4">
             <Link href="/login" className="mr-2 hover:underline">Login</Link>
-          <Button variant="outline" className="text-black bg-white hover:bg-black hover:text-white" asChild>
+          <Button asChild>
             <Link href="/signup">Sign Up</Link>
           </Button>
         </div>
