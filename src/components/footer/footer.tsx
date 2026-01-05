@@ -19,29 +19,29 @@ export default function Footer() {
 						<div>
 							<div className="font-semibold text-white mb-7">Company</div>
 							<ul className="space-y-2 text-gray-400">
-								<li><a href="#" className="hover:text-white">About Us</a></li>
-								<li><a href="#" className="hover:text-white">Careers</a></li>
-								<li><a href="#" className="hover:text-white">Blog</a></li>
+								<li><a href="#" className="hover:text-[#ff9e3d]">About Us</a></li>
+								<li><a href="#" className="hover:text-[#ff9e3d]">Careers</a></li>
+								<li><a href="#" className="hover:text-[#ff9e3d]">Blog</a></li>
 							</ul>
 						</div>
 						<div>
 							<div className="font-semibold text-white mb-7">Resources</div>
 							<ul className="space-y-2 text-gray-400">
-								<li><a href="#" className="hover:text-white">FAQ</a></li>
-								<li><a href="#" className="hover:text-white">Help Center</a></li>
-								<li><a href="#" className="hover:text-white">Privacy Policy</a></li>
+								<li><a href="#" className="hover:text-[#ff9e3d]">FAQ</a></li>
+								<li><a href="#" className="hover:text-[#ff9e3d]">Help Center</a></li>
+								<li><a href="#" className="hover:text-[#ff9e3d]">Privacy Policy</a></li>
 							</ul>
 						</div>
                         <div>
 							<div className="font-semibold text-white mb-7">Follow Us</div>
 							<div className="flex items-center gap-5">
-								<a href="#" aria-label="GitHub" className="text-gray-400 hover:text-white">
+								<a href="#" aria-label="GitHub" className="text-gray-400 hover:text-[#ff9e3d]">
 									<Github className="w-6 h-6" />
 								</a>
-								<a href="#" aria-label="Twitter" className="text-gray-400 hover:text-white">
+								<a href="#" aria-label="Twitter" className="text-gray-400 hover:text-[#ff9e3d]">
 									<Twitter className="w-6 h-6" />
 								</a>
-								<a href="#" aria-label="LinkedIn" className="text-gray-400 hover:text-white">
+								<a href="#" aria-label="LinkedIn" className="text-gray-400 hover:text-[#ff9e3d]">
 									<Linkedin className="w-6 h-6" />
 								</a>
 							</div>
