@@ -34,12 +34,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <QueryProvider>
-        <NextAuthSessionProvider>          
+          <NextAuthSessionProvider>
             <ToastProvider />
             <Header />
             {children}
-            <Footer />         
-        </NextAuthSessionProvider>
+            <Footer />
+          </NextAuthSessionProvider>
         </QueryProvider>
       </body>
     </html>
