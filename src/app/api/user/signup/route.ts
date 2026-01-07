@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import { prisma as db } from "@/lib/db";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import { NextResponse } from 'next/server';
+import { prisma as db } from '@/lib/db';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 export async function POST(req: Request) {
   try {
@@ -15,7 +15,7 @@ export async function POST(req: Request) {
 
     if (existingUser) {
       return NextResponse.json(
-        { message: "User already exists." },
+        { message: 'User already exists. Please check your email.' },
         { status: 409 }
       );
     }
@@ -30,14 +30,24 @@ export async function POST(req: Request) {
       },
     });
 
-    const token = jwt.sign({ id: user.id, email: user.email }, process.env.NEXTAUTH_SECRET!, {
-      expiresIn: "1h",
-    });
+    const token = jwt.sign(
+      { id: user.id, email: user.email },
+      process.env.NEXTAUTH_SECRET!,
+      {
+        expiresIn: '1h',
+      }
+    );
 
-    return NextResponse.json({ user, token }, { status: 201 });
+    return NextResponse.json(
+      { user: { id: user.id, name: user.name, email: user.email }, token },
+      { status: 201 }
+    );
   } catch (error) {
     return NextResponse.json(
-      { message: "An error occurred while registering the user." ,error:error },
+      {
+        message: 'An error occurred while registering the user.',
+        error: error,
+      },
       { status: 500 }
     );
   }
