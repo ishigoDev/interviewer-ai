@@ -25,6 +25,7 @@ const eslintConfig = defineConfig([
       "curly": "error",
       "no-unused-vars": "error",
       "no-debugger": "error",
+      "@typescript-eslint/no-explicit-any": "off",
     },
   },
 ]);
